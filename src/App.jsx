@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom'; // Import useLocation to check the current path
+import Sidebar from './components/Sidebar';
+import Player from './components/Player';
+import Display from './components/Display';
+import Logout from './components/Logout'; // Import the Login component
+import { PlayerContext } from './context/PlayerContext';
+import Login from './components/Login';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const { audioRef, track, songsData } = useContext(PlayerContext);
+  const location = useLocation(); // Hook to get the current URL path
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className='h-screen bg-black'>
+      {/* Check if the current path is "/login" and render the Login component */}
+      {location.pathname === '/logout' ? (
+        <Logout />
+      ) : (
+        location.pathname ==='/login' ? (
+          <Login />
+        ) : (
+          songsData.length !== 0 ? (
+            <>
+              <div className='h-[90%] flex'>
+                <Sidebar />
+                <Display />
+              </div>
+              <Player />
+            </>
+          ) : null // You can add a fallback here (e.g., a loading spinner or message)
+        )
+      )}
+      <audio ref={audioRef} src={track ? track.file : ''} preload='auto'></audio>
+    </div>
+  );
+};
 
-export default App
+export default App;
