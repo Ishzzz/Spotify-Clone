@@ -66,7 +66,7 @@ const Login = () => {
                     <p className="text-sm text-white">
                         Don't have an account?{' '}
                         <a href="/signup" className="text-white font-semibold hover:underline">
-                            Sign up for Spotify
+                            Sign up for Spotifyyy
                         </a>
                     </p>
                 </div>
