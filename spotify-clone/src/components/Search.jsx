@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { PlayerContext , url} from '../context/PlayerContext.js';
+import { PlayerContext} from '../context/PlayerContext';
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../assets/assets';
+import {url} from '../context/PlayerContext';
 
 
 const Search = () => {
