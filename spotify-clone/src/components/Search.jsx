@@ -3,8 +3,8 @@ import axios from 'axios';
 import { PlayerContext} from '../context/PlayerContext';
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../assets/assets';
-import {url} from '../context/PlayerContext';
 
+const url = 'https://spotify-clone-backend-x63h.onrender.com';
 
 const Search = () => {
     const [searchQuery, setSearchQuery] = useState('');
