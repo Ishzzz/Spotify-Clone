@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { PlayerContext } from '../context/PlayerContext';
+import { PlayerContext , url} from '../context/PlayerContext.js';
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../assets/assets';
+
 
 const Search = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +26,7 @@ const Search = () => {
             if (searchQuery.trim() === '') return; // Skip if query is empty
 
             try {
-                const response = await axios.get(`http://localhost:4000/api/song/search?q=${searchQuery}`);
+                const response = await axios.get(`${url}/api/song/search?q=${searchQuery}`);
                 setSearchResults(response.data);
             } catch (error) {
                 console.error('Error fetching search results:', error);
